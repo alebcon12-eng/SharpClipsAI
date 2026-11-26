@@ -58,3 +58,39 @@ document.addEventListener("click", (event) => {
 
 mobileLayout.addEventListener("change", updateNavigation);
 updateNavigation();
+
+for (const button of document.querySelectorAll(".caption-play")) {
+  const player = document.getElementById(button.getAttribute("aria-controls"));
+  const styleName = document.getElementById(player.getAttribute("aria-labelledby")).textContent;
+
+  function updatePlayButton() {
+    const label = player.paused ? "Ver animação" : "Pausar";
+    button.textContent = label;
+    const action = player.paused ? label : "Pausar animação";
+    button.setAttribute("aria-label", action + " de " + styleName);
+  }
+
+  player.controls = false;
+  button.hidden = false;
+  updatePlayButton();
+  player.addEventListener("play", updatePlayButton);
+  player.addEventListener("pause", updatePlayButton);
+  player.addEventListener("ended", () => {
+    player.load();
+    updatePlayButton();
+  });
+
+  button.addEventListener("click", async () => {
+    if (!player.paused) {
+      player.pause();
+      return;
+    }
+    try {
+      await player.play();
+    } catch {
+      player.controls = true;
+      button.hidden = true;
+      player.focus();
+    }
+  });
+}
