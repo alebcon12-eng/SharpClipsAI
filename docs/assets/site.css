@@ -710,9 +710,10 @@ h3 { font-size: 1.23rem; line-height: 1.25; letter-spacing: -.035em; }
 }
 .download-card h2 { margin-top: .8rem; font-size: clamp(2.35rem, 4.1vw, 4rem); }
 .download-card p:not(.eyebrow) { max-width: 35ch; margin-top: .83rem; color: var(--secondary); }
-.download-card .button { min-height: 3.05rem; margin-top: 1.2rem; }
+.download-card > .button { min-height: 3.05rem; margin-top: 1.2rem; }
 .project-contact {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: .75rem;
   margin-top: 1.35rem;
@@ -721,13 +722,13 @@ h3 { font-size: 1.23rem; line-height: 1.25; letter-spacing: -.035em; }
   border-radius: .75rem;
   background: #0b172d;
   line-height: 1.4;
-  transition: background-color 160ms ease, border-color 160ms ease;
 }
-.project-contact:hover { border-color: #779fc5; background: #132540; }
+.contact-details { display: flex; flex: 1 1 13rem; min-width: 0; align-items: center; gap: .75rem; }
 .project-contact .icon-box { flex: none; margin: 0; }
 .project-contact strong, .contact-email { display: block; overflow-wrap: anywhere; }
-.contact-email { margin-top: .15rem; color: var(--ice); font-size: .9rem; }
-.project-contact:hover .contact-email { text-decoration: underline; text-underline-offset: .2em; }
+.contact-email { width: fit-content; margin-top: .15rem; color: var(--ice); font-size: .9rem; }
+.contact-email:hover { text-decoration: underline; text-underline-offset: .2em; }
+.contact-gmail { margin-inline-start: auto; }
 .project-links { display: flex; flex-wrap: wrap; gap: 0 1.15rem; margin-top: .55rem; color: var(--ice); font-size: .9rem; }
 .project-links a { display: inline-flex; min-height: 2.35rem; align-items: center; gap: .48rem; }
 .requirements-card h3 { margin-bottom: .68rem; }
@@ -811,6 +812,7 @@ h3 { font-size: 1.23rem; line-height: 1.25; letter-spacing: -.035em; }
 @media (max-width: 490px) {
   .footer-inner { flex-direction: column; align-items: flex-start; }
   .footer-links { gap: 0 1rem; }
+  .contact-gmail { width: 100%; margin-inline-start: 0; }
   .header-inner:has(.menu-toggle[hidden]) { grid-template-columns: 1fr; padding-block: .55rem; }
   .header-inner:has(.menu-toggle[hidden]) .navigation { justify-self: start; }
   .hero h1 { font-size: clamp(2.3rem, 9.8vw, 3.7rem); }
