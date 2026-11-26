@@ -60,6 +60,33 @@ document.addEventListener("click", (event) => {
 mobileLayout.addEventListener("change", updateNavigation);
 updateNavigation();
 
+const navSections = [...menu.querySelectorAll("a")].map(link => ({
+  link,
+  target: document.getElementById(link.hash.slice(1)),
+}));
+const header = navigation.closest(".site-header");
+let activeSection;
+let navFrame;
+
+function updateActiveSection() {
+  navFrame = null;
+  const line = header.offsetHeight + Math.min(window.innerHeight * .2, 145);
+  const section = navSections.findLast(({ target }) => target.getBoundingClientRect().top <= line);
+  if (section === activeSection) return;
+
+  activeSection?.link.removeAttribute("aria-current");
+  section?.link.setAttribute("aria-current", "location");
+  activeSection = section;
+}
+
+function requestNavUpdate() {
+  navFrame ??= requestAnimationFrame(updateActiveSection);
+}
+
+window.addEventListener("scroll", requestNavUpdate, { passive: true });
+window.addEventListener("resize", requestNavUpdate);
+requestNavUpdate();
+
 const captionPlayers = new Map();
 for (const button of document.querySelectorAll(".caption-play")) {
   const player = document.getElementById(button.getAttribute("aria-controls"));
@@ -170,9 +197,11 @@ if (tutorial) {
   const nextButton = actions.querySelector(".tutorial-next");
   const progress = actions.querySelector(".tutorial-progress");
   let current = 0;
-  const step = connectTabs(list, ({ index }) => {
+  const step = connectTabs(list, ({ panel, index }) => {
+    if (index !== current) panel.style.setProperty("--panel-offset", index < current ? "-.85rem" : ".85rem");
     current = index;
     progress.value = index + 1;
+    actions.style.setProperty("--tutorial-completion", progress.position);
     previousButton.disabled = index === 0;
     nextButton.textContent = index === progress.max - 1 ? "Recomeçar" : "Próxima etapa";
   });
@@ -214,8 +243,8 @@ if (exampleLanguage) {
 
 if (!reducedMotion.matches && "IntersectionObserver" in window) {
   const sections = document.querySelectorAll(
-    ".section-heading, .feature-card, .tutorial, .caption-lab, .translation-card, " +
-    ".demo-player, .demo-still, .download-card, .requirements-card"
+    ".section-heading:not(.demo-heading), .feature-card, .tutorial, .caption-lab, " +
+    ".translation-card, .demo-grid, .download-card, .requirements-card"
   );
   const anchored = document.getElementById(location.hash.slice(1));
   const revealObserver = new IntersectionObserver(entries => {
@@ -238,7 +267,10 @@ if (!reducedMotion.matches && "IntersectionObserver" in window) {
   }
 
   document.addEventListener("focusin", event => {
-    const pending = event.target.closest(".reveal-pending");
-    if (pending) reveal(pending, false);
+    const section = event.target.closest(".reveal-pending, .reveal-visible");
+    if (section) {
+      reveal(section, false);
+      section.classList.remove("reveal-visible");
+    }
   });
 }
