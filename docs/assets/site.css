@@ -651,7 +651,7 @@ h3 { font-size: 1.23rem; line-height: 1.25; letter-spacing: -.035em; }
 .demo-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) clamp(15rem, 26vw, 21rem);
-  grid-template-areas: "heading player" "still player";
+  grid-template-areas: "heading short" "wide short";
   grid-template-rows: auto 1fr;
   column-gap: clamp(1.75rem, 5vw, 4.5rem);
   row-gap: clamp(1rem, 2.5vw, 1.85rem);
@@ -662,23 +662,36 @@ h3 { font-size: 1.23rem; line-height: 1.25; letter-spacing: -.035em; }
 }
 .demo-heading { grid-area: heading; margin: 0; }
 .demo-heading h2 { max-width: 14ch; }
-.demo-player, .demo-still {
+.demo-player {
+  min-width: 0;
   overflow: hidden;
   border: 1px solid var(--line-light);
   border-radius: .95rem;
   background: #10192e;
-}
-.demo-player {
-  grid-area: player;
-  align-self: center;
   box-shadow: 0 18px 44px #0307139c;
 }
-.demo-player video { display: block; width: 100%; aspect-ratio: 9 / 16; background: #080e20; }
+.demo-player-wide { grid-area: wide; align-self: end; }
+.demo-player-short {
+  grid-area: short;
+  align-self: center;
+}
+.demo-player figcaption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .5rem;
+  padding: .72rem .86rem;
+  border-bottom: 1px solid var(--line);
+  background: #152139;
+  font-size: .88rem;
+  line-height: 1.4;
+}
+.demo-video-topic { color: var(--secondary); font-weight: 550; }
+.demo-duration { flex: none; color: var(--ice); font-size: .82rem; font-variant-numeric: tabular-nums; }
+.demo-player video { width: 100%; background: #080e20; }
+.demo-player-wide video { aspect-ratio: 16 / 9; }
+.demo-player-short video { aspect-ratio: 9 / 16; }
 .demo-player video:focus-visible { outline-offset: -5px; }
-.demo-still { grid-area: still; align-self: end; margin: 0; padding: clamp(.65rem, 1.5vw, 1.05rem); }
-.demo-still img { width: 100%; height: auto; border: 1px solid #334969; border-radius: .55rem; }
-.demo-still figcaption { display: grid; gap: .18rem; margin-top: .72rem; }
-.demo-still figcaption span { color: var(--secondary); font-size: .91rem; }
 
 .download-grid {
   display: grid;
@@ -768,11 +781,11 @@ h3 { font-size: 1.23rem; line-height: 1.25; letter-spacing: -.035em; }
 @media (max-width: 720px) {
   .demo-grid {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "heading" "player" "still";
+    grid-template-areas: "heading" "wide" "short";
     grid-template-rows: auto;
   }
   .demo-heading h2 { max-width: 18ch; }
-  .demo-player { justify-self: center; width: min(100%, 20rem); }
+  .demo-player-short { justify-self: center; width: min(100%, 20rem); }
 }
 
 @media (max-width: 490px) {

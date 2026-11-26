@@ -241,6 +241,14 @@ if (exampleLanguage) {
   exampleLanguage.closest(".language-control").hidden = false;
 }
 
+const demo = document.getElementById("demonstracao");
+const demoVideos = demo.querySelectorAll("video");
+demo.addEventListener("play", event => {
+  for (const video of demoVideos) {
+    if (video !== event.target) video.pause();
+  }
+}, true);
+
 if (!reducedMotion.matches && "IntersectionObserver" in window) {
   const sections = document.querySelectorAll(
     ".section-heading:not(.demo-heading), .feature-card, .tutorial, .caption-lab, " +
@@ -260,7 +268,7 @@ if (!reducedMotion.matches && "IntersectionObserver" in window) {
   }
 
   for (const section of sections) {
-    if (section.getBoundingClientRect().top > window.innerHeight && !anchored?.contains(section)) {
+    if (section.getBoundingClientRect().top > window.innerHeight && !anchored?.contains(section) && !section.contains(anchored)) {
       section.classList.add("reveal-pending");
       revealObserver.observe(section);
     }
