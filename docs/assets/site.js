@@ -1,23 +1,23 @@
 const navigation = document.querySelector(".navigation");
 const menuToggle = navigation.querySelector(".menu-toggle");
 const menu = document.getElementById("menu");
-const mobileLayout = window.matchMedia("(max-width: 890px)");
+const compactNavigation = window.matchMedia("(max-width: 890px)");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 function setMenuOpen(open) {
   menuToggle.setAttribute("aria-expanded", String(open));
-  menu.hidden = mobileLayout.matches && !open;
+  menu.hidden = compactNavigation.matches && !open;
 }
 
 function updateNavigation() {
   const focusOnMenuLink = menu.contains(document.activeElement);
   const focusOnButton = document.activeElement === menuToggle;
-  menuToggle.hidden = !mobileLayout.matches;
+  menuToggle.hidden = !compactNavigation.matches;
   setMenuOpen(false);
 
-  if (mobileLayout.matches && focusOnMenuLink) {
+  if (compactNavigation.matches && focusOnMenuLink) {
     menuToggle.focus();
-  } else if (!mobileLayout.matches && focusOnButton) {
+  } else if (!compactNavigation.matches && focusOnButton) {
     menu.querySelector("a").focus();
   }
 }
@@ -28,7 +28,7 @@ menuToggle.addEventListener("click", () => {
 
 menu.addEventListener("click", (event) => {
   const link = event.target.closest("a");
-  if (!mobileLayout.matches || !link || event.defaultPrevented ||
+  if (!compactNavigation.matches || !link || event.defaultPrevented ||
       event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) {
     return;
   }
@@ -57,7 +57,7 @@ document.addEventListener("click", (event) => {
   }
 });
 
-mobileLayout.addEventListener("change", updateNavigation);
+compactNavigation.addEventListener("change", updateNavigation);
 updateNavigation();
 
 const navSections = [...menu.querySelectorAll("a")].map(link => ({
@@ -174,17 +174,18 @@ function connectTabs(list, onSelect) {
 const picker = document.querySelector(".caption-picker");
 if (picker) {
   const list = picker.querySelector(".style-tabs");
+  const stackedPicker = window.matchMedia("(max-width: 820px)");
   connectTabs(list, ({ panel, previous, activated }) => {
     if (previous !== panel) previous.querySelector("video").pause();
     if (activated) captionPlayers.get(panel.querySelector("video"))(true);
   });
 
   function updateTabOrientation() {
-    list.setAttribute("aria-orientation", mobileLayout.matches ? "horizontal" : "vertical");
+    list.setAttribute("aria-orientation", stackedPicker.matches ? "horizontal" : "vertical");
   }
 
   updateTabOrientation();
-  mobileLayout.addEventListener("change", updateTabOrientation);
+  stackedPicker.addEventListener("change", updateTabOrientation);
   picker.hidden = false;
   picker.closest(".caption-lab").dataset.ready = "true";
 }
