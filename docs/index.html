@@ -13,7 +13,7 @@
   <meta property="og:url" content="https://alebcon12-eng.github.io/SharpClipsAI/">
   <link rel="canonical" href="https://alebcon12-eng.github.io/SharpClipsAI/">
   <link rel="icon" type="image/png" href="./assets/icone-sharpclips.png">
-  <link rel="stylesheet" href="./assets/site.css?v=4215-espacamento">
+  <link rel="stylesheet" href="./assets/site.css?v=4219-instalador">
   <script src="./assets/site.js?v=4215-espacamento" defer></script>
   <title>SharpClips AI | Cortes automáticos e legendas com IA</title>
 </head>
@@ -39,7 +39,7 @@
         </ul>
       </nav>
 
-      <a class="button button-secondary header-download" href="https://github.com/alebcon12-eng/SharpClipsAI/releases/download/4.2.17/SharpClipsAI_Setup_4.2.17_Windows_x64.exe"><svg class="icon" aria-hidden="true"><use href="#icon-download"></use></svg> Download</a>
+      <a class="button button-secondary header-download" href="https://github.com/alebcon12-eng/SharpClipsAI/releases/download/4.2.19/SharpClipsAI_Setup_4.2.19_Offline_Windows_x64.exe"><svg class="icon" aria-hidden="true"><use href="#icon-download"></use></svg> Download</a>
     </div>
   </header>
 
@@ -52,10 +52,10 @@
             <h1 id="hero-title">Vídeos longos.<br><span>Cortes com IA.</span></h1>
             <p class="hero-copy">Importe um vídeo, gere cortes automáticos e personalize as legendas.</p>
             <div class="hero-actions">
-              <a class="button button-primary" href="https://github.com/alebcon12-eng/SharpClipsAI/releases/download/4.2.17/SharpClipsAI_Setup_4.2.17_Windows_x64.exe" aria-describedby="status-instalador"><svg class="icon" aria-hidden="true"><use href="#icon-download"></use></svg> Baixar grátis</a>
+              <a class="button button-primary" href="https://github.com/alebcon12-eng/SharpClipsAI/releases/download/4.2.19/SharpClipsAI_Setup_4.2.19_Offline_Windows_x64.exe" aria-describedby="status-instalador"><svg class="icon" aria-hidden="true"><use href="#icon-download"></use></svg> Baixar grátis</a>
               <a class="button button-secondary" href="#demonstracao"><svg class="icon" aria-hidden="true"><use href="#icon-play"></use></svg> Assistir à demo</a>
             </div>
-            <p class="download-meta" id="status-instalador">Versão 4.2.17 <span>·</span> Windows 64 bits <span>·</span> Instalador de 14 MB</p>
+            <p class="download-meta" id="status-instalador">Versão 4.2.19 <span>·</span> Windows 64 bits <span>·</span> Instalador offline de 744 MB</p>
           </div>
 
           <figure class="hero-product">
@@ -482,8 +482,12 @@
           <div class="download-card">
             <p class="eyebrow">Download para Windows</p>
             <h2 id="projeto-title">Crie seu<br>primeiro corte.</h2>
-            <p>Instalador 4.2.17 para Windows de 64 bits. O arquivo inicial tem cerca de 14 MB.</p>
-            <a class="button button-primary" href="https://github.com/alebcon12-eng/SharpClipsAI/releases/download/4.2.17/SharpClipsAI_Setup_4.2.17_Windows_x64.exe"><svg class="icon" aria-hidden="true"><use href="#icon-download"></use></svg> Baixar instalador</a>
+            <p>O instalador offline da versão 4.2.19 tem 744 MB porque já inclui Python, bibliotecas, FFmpeg, Visual C++ e WebView2. Baixe o arquivo uma vez e instale em outro PC sem baixar essas dependências de novo.</p>
+            <div class="download-options">
+              <a class="button button-primary" href="https://github.com/alebcon12-eng/SharpClipsAI/releases/download/4.2.19/SharpClipsAI_Setup_4.2.19_Offline_Windows_x64.exe"><svg class="icon" aria-hidden="true"><use href="#icon-download"></use></svg> Baixar offline</a>
+              <a class="button button-secondary" href="https://github.com/alebcon12-eng/SharpClipsAI/releases/download/4.2.19/SharpClipsAI_Setup_4.2.19_Windows_x64.exe">Instalador leve · 14 MB</a>
+            </div>
+            <p>O instalador leve baixa as dependências que faltam. Os modelos de IA são baixados à parte pela Central de IA nas duas edições.</p>
             <div class="project-contact" id="contato">
               <div class="contact-details">
                 <span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg></span>
@@ -494,6 +498,7 @@
             <div class="project-links">
               <a href="https://github.com/alebcon12-eng/SharpClipsAI/releases"><svg class="icon" aria-hidden="true"><use href="#icon-history"></use></svg> Histórico de versões</a>
               <a href="https://github.com/alebcon12-eng/SharpClipsAI/issues"><svg class="icon" aria-hidden="true"><use href="#icon-comment"></use></svg> Reportar problema</a>
+              <a href="https://github.com/alebcon12-eng/SharpClipsAI/releases/tag/4.2.19#fontes-do-ffmpeg"><svg class="icon" aria-hidden="true"><use href="#icon-file"></use></svg> Fontes do FFmpeg</a>
             </div>
           </div>
 
@@ -501,8 +506,8 @@
             <h3 id="requirements-title">Requisitos e espaço em disco</h3>
             <dl class="requirements-list">
               <div><dt>Sistema</dt><dd>Windows 10 ou 11 de 64 bits (instalador x64).</dd></div>
-              <div><dt>Interface</dt><dd>Microsoft Edge WebView2 Runtime. O instalador tenta instalar o componente se estiver faltando.</dd></div>
-              <div><dt>Internet</dt><dd>Para baixar dependências na primeira instalação e os modelos na configuração da IA.</dd></div>
+              <div><dt>Interface</dt><dd>Microsoft Edge WebView2 Runtime. A edição offline já inclui o instalador autônomo.</dd></div>
+              <div><dt>Internet</dt><dd>Necessária para baixar os modelos de IA e usar recursos on-line. Com o instalador leve, também é usada para baixar dependências que faltam.</dd></div>
               <div><dt>Disco</dt><dd><strong>Cerca de 32 GB na configuração medida.</strong> Inclui o programa, WebView2, caches, Parakeet, Qwen com CUDA e Ollama com o modelo de tradução. Reserve 35 GB para esse conjunto, mais espaço para vídeos e cortes.</dd></div>
             </dl>
             <p><strong>IA local</strong> — o perfil Leve usa o Whisper Base na CPU. A seleção manual desse modelo verifica 1.500 MiB de RAM livre. A aceleração CUDA exige GPU NVIDIA compatível.</p>

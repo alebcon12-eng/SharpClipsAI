@@ -784,7 +784,14 @@ h3 { font-size: 1.23rem; line-height: 1.25; letter-spacing: -.035em; }
 }
 .download-card h2 { margin-top: .8rem; font-size: clamp(2.35rem, 4.1vw, 4rem); }
 .download-card p:not(.eyebrow) { max-width: 35ch; margin-top: .83rem; color: var(--secondary); }
-.download-card > .button { min-height: 3.05rem; margin-top: 1.2rem; }
+.download-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .65rem;
+  margin-top: 1.2rem;
+}
+.download-options .button { min-height: 3.05rem; }
 .project-contact {
   display: flex;
   flex-wrap: wrap;
