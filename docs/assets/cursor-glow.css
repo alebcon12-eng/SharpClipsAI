@@ -1,0 +1,18 @@
+.cursor-glow {
+  position: fixed;
+  inset: 0 auto auto 0;
+  z-index: 3;
+  width: clamp(22rem, 40vw, 36rem);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  background: radial-gradient(circle closest-side, rgb(66 137 255 / 15%), rgb(48 108 244 / 7%) 45%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 240ms ease-out;
+}
+
+.cursor-glow.is-visible { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  .cursor-glow { display: none; }
+}
