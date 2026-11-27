@@ -24,7 +24,7 @@
   --gutter: clamp(1rem, 3.2vw, 2.5rem);
   --grid-gap: clamp(.85rem, 1.6vw, 1.25rem);
   --panel-pad: clamp(1.15rem, 2.8vw, 2.05rem);
-  --section-pad: clamp(3.25rem, 6.3vw, 5.7rem);
+  --section-pad: clamp(2.5rem, 4.6vw, 4.5rem);
   --header-height: 4.6rem;
   font-family: Inter, "Segoe UI", sans-serif;
   font-synthesis: none;
@@ -168,7 +168,7 @@ button { cursor: pointer; }
   position: relative;
   isolation: isolate;
   overflow: clip;
-  padding-block: clamp(3.15rem, 6.4vw, 6.4rem) 1.6rem;
+  padding-block: clamp(3.15rem, 6.4vw, 6.4rem) clamp(.65rem, 1.25vw, 1rem);
   background: radial-gradient(ellipse at 70% 33%, #192e5df5 0%, #0d1638 36%, transparent 73%);
 }
 .hero::before {
@@ -300,6 +300,7 @@ button { cursor: pointer; }
 .hero-facts small { color: var(--muted); font-size: .81rem; }
 
 .section { padding-block: var(--section-pad); }
+.section.shell + .section.shell { padding-block-start: 0; }
 .section-tinted {
   border-block: 1px solid #26344d;
   background: linear-gradient(180deg, #10172d, #0a1022 70%);
@@ -349,9 +350,30 @@ h3 { font-size: 1.23rem; line-height: 1.25; letter-spacing: -.035em; }
   padding: clamp(1.2rem, 3.5vw, 2.7rem);
 }
 .publication-highlight-copy, .caption-highlight > div, .publication-preview, .caption-preview { min-width: 0; }
-.publication-highlight h2, .caption-highlight h2 { max-width: 17ch; font-size: clamp(1.65rem, 4vw, 2.8rem); }
-.caption-highlight { margin-top: var(--grid-gap); grid-template-columns: minmax(0, 1fr) minmax(0, .75fr); }
-.caption-highlight p { max-width: 44ch; }
+.publication-highlight h2 { max-width: 17ch; font-size: clamp(1.65rem, 4vw, 2.8rem); }
+.caption-highlight {
+  grid-template-columns: minmax(0, 1fr) minmax(0, .7fr);
+  gap: clamp(1.2rem, 3vw, 2.25rem);
+  margin-top: var(--grid-gap);
+  padding: var(--panel-pad);
+}
+.caption-highlight h2 {
+  max-width: 22ch;
+  font-size: clamp(1.6rem, 3.45vw, 2.65rem);
+  line-height: 1.12;
+  text-wrap: balance;
+}
+.caption-highlight p { max-width: 55ch; margin-top: .75rem; }
+.caption-highlight .caption-kicker {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  margin: 0 0 .7rem;
+  color: var(--ice);
+  font-size: .85rem;
+  font-weight: 720;
+}
+.caption-kicker .icon-box { width: 1.9rem; height: 1.9rem; margin: 0; border-radius: .5rem; }
 .caption-preview { width: min(100%, 301px); justify-self: center; }
 .publication-steps { padding: 0; margin: 1.3rem 0 1.5rem; list-style: none; }
 .publication-steps li {
@@ -380,6 +402,7 @@ h3 { font-size: 1.23rem; line-height: 1.25; letter-spacing: -.035em; }
   border-radius: .72rem;
   box-shadow: 0 16px 32px #03061055;
 }
+.caption-preview img { aspect-ratio: 301 / 306; object-fit: cover; object-position: center top; }
 .publication-preview figcaption, .caption-preview figcaption { margin-top: .55rem; font-size: .82rem; }
 .release-details {
   display: grid;
@@ -426,7 +449,6 @@ h3 { font-size: 1.23rem; line-height: 1.25; letter-spacing: -.035em; }
 .format.square { width: 1.4rem; }
 .format.horizontal { width: 2.4rem; }
 
-.tutorial-section { padding-top: 0; }
 .tutorial[data-ready] {
   overflow: hidden;
   border: 1px solid var(--line-light);
@@ -702,12 +724,12 @@ h3 { font-size: 1.23rem; line-height: 1.25; letter-spacing: -.035em; }
 
 .demo-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(15rem, 26vw, 21rem);
+  grid-template-columns: minmax(0, 1fr) clamp(12rem, 22vw, 21rem);
   grid-template-areas: "heading short" "wide short";
   grid-template-rows: auto 1fr;
-  column-gap: clamp(1.75rem, 5vw, 4.5rem);
-  row-gap: clamp(1rem, 2.5vw, 1.85rem);
-  padding: clamp(1.2rem, 4.2vw, 3.4rem);
+  column-gap: clamp(1.1rem, 3.4vw, 3rem);
+  row-gap: clamp(1rem, 2.1vw, 1.55rem);
+  padding: clamp(1.15rem, 3.5vw, 2.7rem);
   border: 1px solid var(--line-light);
   border-radius: 1.25rem;
   background: radial-gradient(ellipse at 95% 0%, #254c8259, transparent 64%), linear-gradient(140deg, #141e36, #0c1427 72%);
@@ -722,7 +744,7 @@ h3 { font-size: 1.23rem; line-height: 1.25; letter-spacing: -.035em; }
   background: #10192e;
   box-shadow: 0 18px 44px #0307139c;
 }
-.demo-player-wide { grid-area: wide; align-self: end; }
+.demo-player-wide { grid-area: wide; align-self: start; }
 .demo-player-short {
   grid-area: short;
   align-self: center;
@@ -816,13 +838,10 @@ h3 { font-size: 1.23rem; line-height: 1.25; letter-spacing: -.035em; }
 .footer-email .icon { color: var(--ice); }
 
 @media (max-width: 890px) {
+  :root { --header-height: 3.95rem; }
   .hero-grid { grid-template-columns: minmax(0, 1fr); gap: var(--panel-pad); }
   .hero h1 { font-size: clamp(2.72rem, 8.1vw, 5rem); }
   .hero-facts { margin-top: 2.15rem; }
-}
-
-@media (max-width: 820px) {
-  :root { --header-height: 3.95rem; }
   .site-header:has(.menu-toggle[hidden]) { position: relative; }
   .header-inner { grid-template-columns: 1fr auto; }
   .navigation { justify-self: end; }
@@ -844,14 +863,14 @@ h3 { font-size: 1.23rem; line-height: 1.25; letter-spacing: -.035em; }
   .menu-toggle:not([hidden]) + .menu a:focus-visible { outline-offset: -4px; }
   .menu a::after { display: none; }
   .menu a[aria-current] { background: #1a3151; }
+}
+
+@media (max-width: 820px) {
   .hero { padding-top: 2.7rem; }
   .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .caption-lab[data-ready], .translation-card, .download-grid { grid-template-columns: minmax(0, 1fr); }
   .tutorial-panel { grid-template-columns: minmax(0, 1fr); min-height: auto; }
   .style-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
-
-@media (max-width: 720px) {
   .demo-grid {
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas: "heading" "wide" "short";

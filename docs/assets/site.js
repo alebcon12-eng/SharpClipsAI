@@ -1,7 +1,7 @@
 const navigation = document.querySelector(".navigation");
 const menuToggle = navigation.querySelector(".menu-toggle");
 const menu = document.getElementById("menu");
-const mobileLayout = window.matchMedia("(max-width: 820px)");
+const mobileLayout = window.matchMedia("(max-width: 890px)");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 function setMenuOpen(open) {
