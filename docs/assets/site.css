@@ -358,6 +358,16 @@ h3 { font-size: 1.23rem; line-height: 1.25; letter-spacing: -.035em; }
   border-top: 1px solid var(--line);
 }
 .publication-steps span, .publication-preview figcaption { color: var(--secondary); }
+.publication-highlight .publication-availability {
+  max-width: none;
+  margin: 0 0 1.2rem;
+  padding: .75rem .9rem;
+  border: 1px solid var(--line-light);
+  border-radius: .55rem;
+  background: #101d34;
+  font-size: .88rem;
+}
+.publication-availability strong { color: var(--ice); }
 .publication-preview { margin: 0; }
 .publication-preview img {
   display: block;
