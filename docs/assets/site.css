@@ -165,20 +165,24 @@ button { cursor: pointer; }
 
 .hero {
   position: relative;
-  isolation: isolate;
   overflow: clip;
   padding-block: clamp(3.15rem, 6.4vw, 6.4rem) clamp(.65rem, 1.25vw, 1rem);
+}
+.hero::before, .hero::after, .section-tinted::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+}
+.hero::after {
+  z-index: -3;
   background: radial-gradient(ellipse at 70% 33%, #192e5df5 0%, #0d1638 36%, transparent 73%);
 }
 .hero::before {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  content: "";
+  z-index: -2;
   background-image: linear-gradient(#92caff20 1px, transparent 1px), linear-gradient(90deg, #92caff20 1px, transparent 1px);
   background-size: 3.2rem 3.2rem;
   mask-image: radial-gradient(ellipse at 79% 37%, #000 0%, transparent 65%);
-  pointer-events: none;
 }
 .hero-grid {
   display: grid;
@@ -301,7 +305,11 @@ button { cursor: pointer; }
 .section { padding-block: var(--section-pad); }
 .section.shell + .section.shell { padding-block-start: 0; }
 .section-tinted {
+  position: relative;
   border-block: 1px solid #26344d;
+}
+.section-tinted::before {
+  z-index: -2;
   background: linear-gradient(180deg, #10172d, #0a1022 70%);
 }
 .section-heading { margin: 0 0 clamp(1.4rem, 3vw, 2.45rem); }

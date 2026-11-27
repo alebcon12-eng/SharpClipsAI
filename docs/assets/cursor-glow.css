@@ -1,7 +1,9 @@
+body { isolation: isolate; }
+
 .cursor-glow {
   position: fixed;
   inset: 0 auto auto 0;
-  z-index: 3;
+  z-index: -1;
   width: clamp(22rem, 40vw, 36rem);
   aspect-ratio: 1;
   translate: -50% -50%;
