@@ -1,8 +1,9 @@
 const navigation = document.querySelector(".navigation");
 const menuToggle = navigation.querySelector(".menu-toggle");
 const menu = document.getElementById("menu");
-const compactNavigation = window.matchMedia("(max-width: 890px)");
+const compactNavigation = window.matchMedia("(max-width: 1190px)");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const text = (key, values) => window.siteLanguage.message(key, values);
 
 function setMenuOpen(open) {
   menuToggle.setAttribute("aria-expanded", String(open));
@@ -90,17 +91,19 @@ requestNavUpdate();
 const captionPlayers = new Map();
 for (const button of document.querySelectorAll(".caption-play")) {
   const player = document.getElementById(button.getAttribute("aria-controls"));
-  const styleName = document.getElementById(player.getAttribute("aria-labelledby")).textContent;
+  const styleName = document.getElementById(player.getAttribute("aria-labelledby"));
 
   function updatePlayButton() {
-    const label = !player.paused ? "Pausar" : player.currentTime > 0 && !player.ended ? "Continuar" : "Repetir";
-    button.textContent = label;
-    button.setAttribute("aria-label", label + " animação de " + styleName);
+    const action = !player.paused ? "Pausar" : player.currentTime > 0 && !player.ended ? "Continuar" : "Repetir";
+    button.textContent = text(action);
+    button.setAttribute("aria-label", text(`${action} animação de {style}`, { style: styleName.textContent }));
   }
 
   player.controls = false;
   player.addEventListener("play", updatePlayButton);
   player.addEventListener("pause", updatePlayButton);
+  document.addEventListener("site-language-change", updatePlayButton);
+  updatePlayButton();
   player.addEventListener("ended", () => {
     player.load();
     updatePlayButton();
@@ -198,13 +201,16 @@ if (tutorial) {
   const nextButton = actions.querySelector(".tutorial-next");
   const progress = actions.querySelector(".tutorial-progress");
   let current = 0;
+  function updateNextLabel() {
+    nextButton.textContent = text(current === progress.max - 1 ? "Recomeçar" : "Próxima etapa");
+  }
   const step = connectTabs(list, ({ panel, index }) => {
     if (index !== current) panel.style.setProperty("--panel-offset", index < current ? "-.85rem" : ".85rem");
     current = index;
     progress.value = index + 1;
     actions.style.setProperty("--tutorial-completion", progress.position);
     previousButton.disabled = index === 0;
-    nextButton.textContent = index === progress.max - 1 ? "Recomeçar" : "Próxima etapa";
+    updateNextLabel();
   });
 
   function goTo(index) {
@@ -216,6 +222,7 @@ if (tutorial) {
 
   previousButton.addEventListener("click", () => goTo(current - 1));
   nextButton.addEventListener("click", () => goTo((current + 1) % progress.max));
+  document.addEventListener("site-language-change", updateNextLabel);
   list.hidden = false;
   actions.hidden = false;
   tutorial.dataset.ready = "true";
@@ -227,23 +234,37 @@ if (exampleLanguage) {
   const exampleLabel = document.getElementById("translation-result-label");
   const exampleFlag = document.getElementById("translation-flag");
   const output = exampleResult.closest(".translation-output") || exampleResult;
-  exampleLanguage.addEventListener("change", () => {
+  function updateExample() {
     const option = exampleLanguage.selectedOptions[0];
-    exampleLabel.textContent = "Tradução em " + option.textContent.toLocaleLowerCase("pt-BR");
+    exampleLabel.textContent = text("Tradução · {language}", { language: option.textContent });
     exampleResult.lang = option.value;
     exampleResult.textContent = option.dataset.example;
     exampleFlag?.setAttribute("href", "#flag-" + option.value.split("-")[0]);
+  }
+  exampleLanguage.addEventListener("change", () => {
+    updateExample();
     if (!reducedMotion.matches && output.animate) {
       output.getAnimations().forEach(animation => animation.cancel());
       output.animate([{ opacity: .55, translate: "0 5px" }, { opacity: 1, translate: "0 0" }],
         { duration: 280, easing: "cubic-bezier(.2,.72,.24,1)" });
     }
   });
+  document.addEventListener("site-language-change", updateExample);
+  updateExample();
   exampleLanguage.closest(".language-control").hidden = false;
 }
 
 const demo = document.getElementById("demonstracao");
 const demoVideos = demo.querySelectorAll("video");
+const demoTracks = [...demo.querySelectorAll("track")];
+function selectDemoTrack() {
+  for (const item of demoTracks) {
+    item.track.mode = item.srclang === window.siteLanguage.locale && item.srclang !== "pt-BR"
+      ? "showing" : "disabled";
+  }
+}
+document.addEventListener("site-language-change", selectDemoTrack);
+selectDemoTrack();
 demo.addEventListener("play", event => {
   for (const video of demoVideos) {
     if (video !== event.target) video.pause();
