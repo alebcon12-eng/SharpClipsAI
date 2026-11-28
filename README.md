@@ -15,11 +15,11 @@
 
 ## Baixar para Windows
 
-- [**Instalador offline**](https://github.com/alebcon12-eng/SharpClipsAI/releases/download/4.3.2/SharpClipsAI_Setup_4.3.2_Offline_Windows_x64.exe) · **745 MB**. Traz Python, bibliotecas, FFmpeg, Microsoft Visual C++ e o instalador autônomo do WebView2. Use o mesmo arquivo para instalar em outros computadores.
+- [**Instalador offline**](https://github.com/alebcon12-eng/SharpClipsAI/releases/download/4.3.3/SharpClipsAI_Setup_4.3.3_Offline_Windows_x64.exe) · **745 MB**. Traz Python, bibliotecas, FFmpeg, Microsoft Visual C++ e o instalador autônomo do WebView2. Use o mesmo arquivo para instalar em outros computadores.
 
-- [**Instalador leve**](https://github.com/alebcon12-eng/SharpClipsAI/releases/download/4.3.2/SharpClipsAI_Setup_4.3.2_Windows_x64.exe) · **15 MB**. Reaproveita componentes compatíveis e baixa as dependências que faltam durante a instalação.
+- [**Instalador leve**](https://github.com/alebcon12-eng/SharpClipsAI/releases/download/4.3.3/SharpClipsAI_Setup_4.3.3_Windows_x64.exe) · **15 MB**. Reaproveita componentes compatíveis e baixa as dependências que faltam durante a instalação.
 
-Os dois instaladores são da versão **4.3.2**, para **Windows 10 ou 11 de 64 bits**. Ambos precisam de internet para baixar os modelos de IA pela primeira vez. O espaço em disco depende dos modelos. Reserve **35 GB** para a configuração medida com Parakeet, Qwen com CUDA, Ollama para tradução, componentes e caches, além do espaço para seus vídeos e cortes. A aceleração CUDA requer uma GPU NVIDIA compatível. [Requisitos no site oficial](https://sharpclipsai.com.br/#requisitos)
+Os dois instaladores são da versão **4.3.3**, para **Windows 10 ou 11 de 64 bits**. Ambos precisam de internet para baixar os modelos de IA pela primeira vez. O espaço em disco depende dos modelos. Reserve **35 GB** para a configuração medida com Parakeet, Qwen com CUDA, Ollama para tradução, componentes e caches, além do espaço para seus vídeos e cortes. A aceleração CUDA requer uma GPU NVIDIA compatível. [Requisitos no site oficial](https://sharpclipsai.com.br/#requisitos)
 
 ## Primeiro corte
 
@@ -114,4 +114,4 @@ Os dois instaladores são da versão **4.3.2**, para **Windows 10 ou 11 de 64 bi
 
 SharpClips AI foi criado por **Alexandre Chaves Fontoura de Plauda**. O aplicativo usa Python, Flask e WebView2 na interface para Windows, FFmpeg para mídia e modelos de IA locais para transcrição, alinhamento e tradução. Consulte **Sobre → Créditos e tecnologias de terceiros** para os componentes e avisos.
 
-[Histórico de versões](https://github.com/alebcon12-eng/SharpClipsAI/releases) · [Fontes do FFmpeg](https://github.com/alebcon12-eng/SharpClipsAI/releases/tag/4.3.2#fontes-do-ffmpeg) · [Privacidade](https://sharpclipsai.com.br/privacidade.html) · [Termos de uso](https://sharpclipsai.com.br/termos.html) · [Exclusão de dados](https://sharpclipsai.com.br/exclusao-de-dados.html)
+[Histórico de versões](https://github.com/alebcon12-eng/SharpClipsAI/releases) · [Fontes do FFmpeg](https://github.com/alebcon12-eng/SharpClipsAI/releases/tag/4.2.19#fontes-do-ffmpeg) · [Privacidade](https://sharpclipsai.com.br/privacidade.html) · [Termos de uso](https://sharpclipsai.com.br/termos.html) · [Exclusão de dados](https://sharpclipsai.com.br/exclusao-de-dados.html)
