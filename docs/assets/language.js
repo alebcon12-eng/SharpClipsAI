@@ -5,8 +5,12 @@
   const status = document.getElementById("language-status");
   const defaultLocale = document.documentElement.lang;
   const locales = new Set([...selector.options].map(option => option.value));
-  const assetRoot = new URL(".", document.currentScript.src);
+  const script = new URL(document.currentScript.src);
+  const assetRoot = new URL(".", script);
   const storageKey = "sharpclips-site-language";
+  if (!document.getElementById("welcome-screen")) {
+    try { sessionStorage.setItem("sharpclips-welcome-seen", "1"); } catch {}
+  }
   const normalize = value => value.trim().replace(/\s+/g, " ");
   const excluded = "svg, script, style, [translate='no'], option[lang], [lang]:not(html), #language-status, .site-language-code";
   const bindings = [];
@@ -45,7 +49,9 @@
 
   function loadCatalog(language) {
     if (!catalogs.has(language)) {
-      const request = fetch(new URL(`languages/${language}.json`, assetRoot))
+      const url = new URL(`languages/${language}.json`, assetRoot);
+      url.search = script.search;
+      const request = fetch(url)
         .then(response => {
           if (!response.ok) throw new Error(`HTTP ${response.status}`);
           return response.json();
@@ -121,11 +127,13 @@
       updateExternalLinks(language);
       if (save) persist(language);
       status.textContent = "";
+      document.documentElement.dataset.languageReady = "";
       document.dispatchEvent(new Event("site-language-change"));
     } catch {
       if (current !== revision) return;
       selector.value = locale;
       status.textContent = message("Não foi possível carregar este idioma. Tente novamente.");
+      document.documentElement.dataset.languageReady = "";
     }
   }
 

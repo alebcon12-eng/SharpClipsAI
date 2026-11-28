@@ -10,18 +10,57 @@
   <meta property="og:locale" content="pt_BR">
   <meta property="og:title" content="SharpClips AI | Cortes automáticos e legendas com IA">
   <meta property="og:description" content="Transforme vídeos longos em cortes legendados. Grátis para Windows.">
-  <meta property="og:url" content="https://alebcon12-eng.github.io/SharpClipsAI/">
-  <link rel="canonical" href="https://alebcon12-eng.github.io/SharpClipsAI/">
+  <meta property="og:url" content="https://www.sharpclipsai.com.br/">
+  <link rel="canonical" href="https://www.sharpclipsai.com.br/">
   <link rel="icon" type="image/png" href="./assets/icone-sharpclips.png">
+  <style>.welcome-screen { display: none; }</style>
+  <script>
+    (() => {
+      try {
+        const key = "sharpclips-welcome-seen";
+        if (sessionStorage.getItem(key)) return;
+        sessionStorage.setItem(key, "1");
+        if (location.hash) return;
+        const root = document.documentElement;
+        root.dataset.welcome = "open";
+        document.addEventListener("DOMContentLoaded", () => {
+          if (!root.hasAttribute("data-welcome-bound")) delete root.dataset.welcome;
+        }, { once: true });
+      } catch {}
+    })();
+  </script>
   <link rel="stylesheet" href="./assets/site.css?v=idiomas">
   <link rel="stylesheet" href="./assets/cursor-glow.css?v=brilho-fundo">
   <link rel="stylesheet" href="assets/language.css">
-  <script src="assets/language.js" defer></script>
+  <link rel="stylesheet" href="assets/welcome.css">
+  <script src="assets/language.js?v=4320" defer></script>
+  <script src="assets/welcome.js" defer></script>
   <script src="./assets/site.js?v=idiomas" defer></script>
   <script src="./assets/cursor-glow.js" defer></script>
   <title>SharpClips AI | Cortes automáticos e legendas com IA</title>
 </head>
 <body id="inicio">
+  <section class="welcome-screen" id="welcome-screen" aria-labelledby="welcome-title">
+    <div class="welcome-toolbar">
+      <div class="welcome-language-slot"></div>
+      <a class="welcome-skip" href="#conteudo" data-welcome-skip>Pular apresentação</a>
+    </div>
+    <div class="welcome-stage">
+      <div class="welcome-brand">
+        <img class="welcome-mark" src="./assets/welcome-logo.webp" width="768" height="768" loading="lazy" decoding="async" alt="">
+        <p class="welcome-name">SharpClips <strong>AI</strong></p>
+      </div>
+      <div class="welcome-copy">
+        <h2 id="welcome-title"><span>Transforme vídeos longos</span> <span>em grandes momentos.</span></h2>
+        <p class="welcome-description">Crie cortes com inteligência artificial, legendas automáticas e processamento direto no seu computador.</p>
+        <div class="welcome-actions">
+          <a class="welcome-enter" href="#conteudo" data-welcome-enter>Conhecer o SharpClips AI</a>
+          <p>100% gratuito. Sem assinaturas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
   <header class="site-header">
@@ -71,7 +110,7 @@
               <a class="button button-primary" href="#projeto" aria-describedby="status-instalador">Ver opções de instalação</a>
               <a class="button button-secondary" href="#demonstracao"><svg class="icon" aria-hidden="true"><use href="#icon-play"></use></svg> Assistir à demo</a>
             </div>
-            <p class="download-meta" id="status-instalador">Versão 4.3.1 <span>·</span> Windows 64 bits</p>
+            <p class="download-meta" id="status-instalador">Versão 4.3.2 <span>·</span> Windows 64 bits</p>
           </div>
 
           <figure class="hero-product">
@@ -521,20 +560,20 @@
     <section class="section shell" id="novidades" aria-labelledby="novidades-title">
       <div class="release-news">
         <div class="section-heading">
-          <p class="eyebrow">Versão 4.3.1</p>
+          <p class="eyebrow">Versão 4.3.2</p>
           <h2 id="novidades-title">Novidades</h2>
-          <a class="release-notes" href="https://github.com/alebcon12-eng/SharpClipsAI/releases/tag/4.3.1"><svg class="icon" aria-hidden="true"><use href="#icon-history"></use></svg> Notas da versão no GitHub</a>
+          <a class="release-notes" href="https://github.com/alebcon12-eng/SharpClipsAI/releases/tag/4.3.2"><svg class="icon" aria-hidden="true"><use href="#icon-history"></use></svg> Notas da versão no GitHub</a>
         </div>
         <div class="release-news-grid">
           <article class="feature-card surface-hover">
             <span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#icon-layout"></use></svg></span>
-            <h3>Instalador e desinstalador renovados</h3>
-            <p>Acompanhe o progresso por etapas e revise as opções da biblioteca em telas reorganizadas, com botões e controles alinhados.</p>
+            <h3>Editor, legendas e publicações</h3>
+            <p>O Editor Pro se ajusta a janelas estreitas. A criação de cortes, as legendas e a fila do YouTube receberam ajustes de tradução.</p>
           </article>
           <article class="feature-card surface-hover">
             <span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#icon-language"></use></svg></span>
-            <h3>Seis idiomas desde a instalação</h3>
-            <p>Escolha português do Brasil, inglês, espanhol, francês, alemão ou italiano. O desinstalador usa o último idioma salvo no programa.</p>
+            <h3>Mensagens no idioma escolhido</h3>
+            <p>A tela de retorno da conexão com o Google, os avisos locais e os rascunhos de suporte usam o idioma do aplicativo. O instalador segue o formato regional dos números.</p>
           </article>
         </div>
       </div>
@@ -548,14 +587,14 @@
             <h2 id="projeto-title">Instale o SharpClips AI</h2>
             <div class="download-options">
               <div class="download-option">
-                <a class="button button-primary" href="https://github.com/alebcon12-eng/SharpClipsAI/releases/download/4.3.1/SharpClipsAI_Setup_4.3.1_Offline_Windows_x64.exe" aria-describedby="instalador-offline-info">
+                <a class="button button-primary" href="https://github.com/alebcon12-eng/SharpClipsAI/releases/download/4.3.2/SharpClipsAI_Setup_4.3.2_Offline_Windows_x64.exe" aria-describedby="instalador-offline-info">
                   <svg class="icon" aria-hidden="true"><use href="#icon-download"></use></svg>
                   <span>Instalador offline <small>745 MB</small></span>
                 </a>
                 <p id="instalador-offline-info">Inclui as dependências e permite instalar o programa sem internet depois de baixar o arquivo.</p>
               </div>
               <div class="download-option">
-                <a class="button button-secondary" href="https://github.com/alebcon12-eng/SharpClipsAI/releases/download/4.3.1/SharpClipsAI_Setup_4.3.1_Windows_x64.exe" aria-describedby="instalador-leve-info">
+                <a class="button button-secondary" href="https://github.com/alebcon12-eng/SharpClipsAI/releases/download/4.3.2/SharpClipsAI_Setup_4.3.2_Windows_x64.exe" aria-describedby="instalador-leve-info">
                   <svg class="icon" aria-hidden="true"><use href="#icon-download"></use></svg>
                   <span>Instalador leve <small>15 MB</small></span>
                 </a>
@@ -603,7 +642,7 @@
           <div class="project-links">
             <a href="https://github.com/alebcon12-eng/SharpClipsAI/releases"><svg class="icon" aria-hidden="true"><use href="#icon-history"></use></svg> Histórico de versões</a>
             <a href="https://github.com/alebcon12-eng/SharpClipsAI/issues"><svg class="icon" aria-hidden="true"><use href="#icon-comment"></use></svg> Reportar problema</a>
-            <a href="https://github.com/alebcon12-eng/SharpClipsAI/releases/tag/4.3.1#fontes-do-ffmpeg"><svg class="icon" aria-hidden="true"><use href="#icon-file"></use></svg> Fontes do FFmpeg</a>
+            <a href="https://github.com/alebcon12-eng/SharpClipsAI/releases/tag/4.3.2#fontes-do-ffmpeg"><svg class="icon" aria-hidden="true"><use href="#icon-file"></use></svg> Fontes do FFmpeg</a>
           </div>
         </div>
       </div>
