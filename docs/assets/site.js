@@ -254,6 +254,23 @@ if (exampleLanguage) {
   exampleLanguage.closest(".language-control").hidden = false;
 }
 
+const demo = document.getElementById("demonstracao");
+const demoVideos = demo.querySelectorAll("video");
+const demoTracks = demo.querySelectorAll("track");
+function selectDemoTrack() {
+  for (const item of demoTracks) {
+    item.track.mode = item.srclang === window.siteLanguage.locale && item.srclang !== "pt-BR"
+      ? "showing" : "disabled";
+  }
+}
+document.addEventListener("site-language-change", selectDemoTrack);
+selectDemoTrack();
+demo.addEventListener("play", event => {
+  for (const video of demoVideos) {
+    if (video !== event.target) video.pause();
+  }
+}, true);
+
 if (!reducedMotion.matches && "IntersectionObserver" in window) {
   const sections = document.querySelectorAll(
     ".section-heading:not(.demo-heading), .feature-card, .tutorial, .caption-lab, " +
