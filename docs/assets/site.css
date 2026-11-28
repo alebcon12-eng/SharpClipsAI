@@ -104,7 +104,7 @@ button, select { color: inherit; font: inherit; }
 .menu {
   display: flex;
   align-items: center;
-  gap: clamp(.85rem, 2.25vw, 2rem);
+  gap: clamp(.72rem, 1.8vw, 1.75rem);
   padding: 0;
   color: var(--secondary);
   font-size: .9rem;
@@ -325,6 +325,42 @@ button { cursor: pointer; }
   color: var(--secondary);
 }
 h3 { font-size: 1.23rem; line-height: 1.25; letter-spacing: -.035em; }
+
+.why-panel {
+  display: grid;
+  grid-template-columns: minmax(0, .77fr) minmax(0, 1.23fr);
+  align-items: center;
+  gap: clamp(1.3rem, 4vw, 3.25rem);
+  padding: clamp(1.2rem, 3.9vw, 3.05rem);
+  border: 1px solid var(--line-light);
+  border-radius: 1.25rem;
+  background: radial-gradient(ellipse at 4% 4%, #172d50 0%, transparent 65%), #0e172c;
+}
+.why-intro .eyebrow { margin-bottom: .85rem; }
+.why-intro h2 {
+  max-width: 14ch;
+  font-size: clamp(2.2rem, 4.05vw, 3.8rem);
+  text-wrap: balance;
+}
+.why-intro > p:last-child {
+  max-width: 39ch;
+  margin-top: 1rem;
+  color: var(--secondary);
+}
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(.75rem, 1.45vw, 1.1rem);
+}
+.reason-card {
+  padding: clamp(.95rem, 1.7vw, 1.4rem);
+  border: 1px solid #314765;
+  border-radius: .85rem;
+  background: #132039;
+}
+.reason-card .icon-box { width: 2.25rem; height: 2.25rem; margin-bottom: .72rem; }
+.reason-card h3 { font-size: clamp(1rem, 1.55vw, 1.16rem); letter-spacing: -.022em; }
+.reason-card p { margin-top: .4rem; color: var(--secondary); font-size: .91rem; }
 
 .feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--grid-gap); }
 .feature-card {
@@ -862,6 +898,7 @@ h3 { font-size: 1.23rem; line-height: 1.25; letter-spacing: -.035em; }
 .footer-email .icon { color: var(--ice); }
 
 @media (max-width: 890px) {
+  .why-panel { grid-template-columns: minmax(0, 1fr); }
   :root { --header-height: 3.95rem; }
   .hero-grid { grid-template-columns: minmax(0, 1fr); gap: var(--panel-pad); }
   .hero h1 { font-size: clamp(2.72rem, 8.1vw, 5rem); }
@@ -903,6 +940,7 @@ h3 { font-size: 1.23rem; line-height: 1.25; letter-spacing: -.035em; }
 }
 
 @media (max-width: 490px) {
+  .why-grid { grid-template-columns: minmax(0, 1fr); }
   .footer-inner { flex-direction: column; align-items: flex-start; }
   .footer-links { gap: 0 1rem; }
   .contact-gmail { width: 100%; margin-inline-start: 0; }
@@ -1002,14 +1040,29 @@ h3 { font-size: 1.23rem; line-height: 1.25; letter-spacing: -.035em; }
   .button, .style-tab, .tutorial-tab {
     transition: translate 180ms var(--ease-out), background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, color 160ms ease;
   }
+  .surface-hover {
+    transition: transform 220ms var(--ease-out), border-color 180ms ease, box-shadow 220ms ease;
+  }
   .tutorial-meter::after { transition: scale 360ms var(--ease-out); }
 
   .button:active, .style-tab:active, .tutorial-tab:active { translate: 0 1px; }
 }
 
 @media (prefers-reduced-motion: no-preference) and (hover: hover) {
+  .surface-hover:hover { transform: translateY(-4px); }
   .button:hover:not(:disabled) { translate: 0 -2px; }
   .button:active { translate: 0 1px; }
+}
+
+.surface-hover:has(:focus-visible) {
+  border-color: #69bedc;
+}
+
+@media (hover: hover) {
+  .surface-hover:hover {
+    border-color: #69bedc;
+    box-shadow: 0 11px 27px #040b1970, 0 0 0 1px #65d6ff1f;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1018,7 +1071,7 @@ h3 { font-size: 1.23rem; line-height: 1.25; letter-spacing: -.035em; }
 
 @media (forced-colors: active) {
   .hero h1 span { color: CanvasText; background: none; }
-  .site-header, .button, .feature-card, .style-tab, .tutorial-tab, .requirements-card { border-color: ButtonText; }
+  .site-header, .button, .feature-card, .why-panel, .reason-card, .style-tab, .tutorial-tab, .requirements-card { border-color: ButtonText; }
   .style-tab[aria-selected="true"], .tutorial-tab[aria-selected="true"] { outline: 2px solid Highlight; outline-offset: -3px; }
   .menu a[aria-current] { text-decoration: underline; }
   .tutorial-meter::after { display: none; }
