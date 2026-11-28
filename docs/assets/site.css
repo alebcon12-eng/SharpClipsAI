@@ -850,7 +850,13 @@ h3 { font-size: 1.23rem; line-height: 1.25; letter-spacing: -.035em; }
   gap: .9rem;
   margin-top: 1.2rem;
 }
-.download-option .button { display: flex; width: 100%; min-height: 3.65rem; padding-inline: .55rem; }
+.download-option .button {
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 3.65rem;
+  padding-inline: .9rem;
+  text-align: start;
+}
 .download-option .button small { display: block; margin-top: .12rem; font-size: .78rem; font-weight: 550; }
 .download-option p { margin-top: .5rem; color: var(--secondary); font-size: .9rem; }
 .ai-download-note {
